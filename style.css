@@ -1,0 +1,106 @@
+/* ZoomElm */
+@keyframes zoomElm1 {
+    50% { transform: translate(50%, 50%); }
+    100% { transform: scale(2) translate(25%, 25%);}
+}
+@keyframes zoomElm2 {
+    50% { transform: translate(-50%, 50%); }
+    100% { transform: scale(2) translate(-25%, 25%) }
+}
+@keyframes zoomElm3 {
+    50% { transform: translate(50%, -50%); }
+    100% { transform: scale(2) translate(25%, -25%) }
+}
+@keyframes zoomElm4 {
+    50% { transform: translate(-50%, -50%); }
+    100% { transform: scale(2) translate(-25%, -25%) }
+}
+
+/* DeszoomElm */
+@keyframes deszoomElm1 {
+    0% { 
+        transform: scale(1.5) translate(25%, 25%);
+    }
+    
+    50% { 
+        transform: scale(1) translate(50%, 50%)
+    }
+}
+
+@keyframes deszoomElm2 {
+    0% { 
+        transform: translate(-50%, 50%) scale(1.5);
+    }
+
+    50% { 
+        transform: scale(1) translate(-50%, 50%);
+    }
+}
+
+@keyframes deszoomElm3 {
+    0% {  transform: scale(1.5) translate(25%, -25%);}
+    50% {  transform: scale(1) translate(50%, -50%) }}
+
+
+@keyframes deszoomElm4 {
+    0% {  transform: translate(-50%, -50%) scale(1.5) ;}
+    50% {  transform: scale(1) translate(-50%, -50%) }}
+
+body {}
+
+#container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 600px;
+    margin: auto;
+
+    perspective-origin: center;
+    perspective: 800px;
+}
+img
+{
+    margin: 0px 0px 0px 0px;
+    width: 100%;
+    height: 100%;
+}
+.element {
+    width: 300px;
+    height: 200px;
+    background-color: blue;
+    transition: 1s;
+    position: relative;
+}
+
+.element a {
+    position: absolute;
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+}
+
+/* Lien "deszoom" caché par defaut */
+.element a.deszoomElm { display: none }
+
+/* Cache les lien zoomElm de l'element pointé */
+#zoomElm1:target ~ #elm1 a.zoomElm { display: none }
+#zoomElm1:target ~ #elm1 a.deszoomElm { display: inherit }
+
+#zoomElm2:target ~ #elm2 a.zoomElm { display: none }
+#zoomElm2:target ~ #elm2 a.deszoomElm { display: inherit }
+
+#zoomElm3:target ~ #elm3 a.zoomElm { display: none }
+#zoomElm3:target ~ #elm3 a.deszoomElm { display: inherit }
+
+#zoomElm4:target ~ #elm4 a.zoomElm { display: none }
+#zoomElm4:target ~ #elm4 a.deszoomElm { display: inherit }
+/* CMD */
+.cmd:target ~ .element {background-color: green;z-index: 100;}
+
+#zoomElm1:target ~ #elm1 { animation: zoomElm1 2s forwards }
+#zoomElm2:target ~ #elm2  { animation: zoomElm2 2s forwards }
+#zoomElm3:target ~ #elm3  { animation: zoomElm3 2s forwards }
+#zoomElm4:target ~ #elm4  { animation: zoomElm4 2s forwards }
+
+#deszoomElm1:target ~ #elm1 { animation: deszoomElm1 2s forwards }
+#deszoomElm2:target ~ #elm2 { animation: deszoomElm2 2s forwards }
+#deszoomElm3:target ~ #elm3 { animation: deszoomElm3 2s forwards }
+#deszoomElm4:target ~ #elm4 { animation: deszoomElm4 2s forwards }
